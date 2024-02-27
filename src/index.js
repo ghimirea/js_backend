@@ -1,25 +1,34 @@
-// const express = require("express");
+import dotenv from 'dotenv';
 import express from "express";
-import { jokes } from "./data.js";
+import connectDB from "./db/index.js";
+
+dotenv.config({
+  path:'./env'
+})
+
+
+// import { jokes } from "./data.js";
 const app = express();
-const port = process.env.port || 3000;
+// const port = process.env.port || 3000;
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
+connectDB()
 
-app.get("/api/jokes", (req, res) => {
-  res.send(jokes);
-});
+// app.get("/", (req, res) => {
+//   res.send("Hello World");
+// });
 
-app.get("/twitter", (req, res) => {
-  res.send("I am in");
-});
+// app.get("/api/jokes", (req, res) => {
+//   res.send(jokes);
+// });
 
-app.get("/login", (req, res) => {
-  res.send("<h1>Please login</h1>");
-});
+// app.get("/twitter", (req, res) => {
+//   res.send("I am in");
+// });
 
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`);
-});
+// app.get("/login", (req, res) => {
+//   res.send("<h1>Please login</h1>");
+// });
+
+// app.listen(port, () => {
+//   console.log(`App listening on port ${port}`);
+// });
