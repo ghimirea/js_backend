@@ -9,26 +9,19 @@ dotenv.config({
 
 // import { jokes } from "./data.js";
 const app = express();
-// const port = process.env.port || 3000;
 
 connectDB()
+.then(()=>{
+  app.on("error", (error)=>{
+    console.log("Error: ", error);
+    throw error
+  })
 
-// app.get("/", (req, res) => {
-//   res.send("Hello World");
-// });
+  app.listen(process.env.PORT || 8000, ()=>{
+    console.log(`Server is running at port: ${process.env.PORT}`)
+  })
+})
+.catch((err) => {
+  console.log('MONGO DB connection Failed !!!', err)
+})
 
-// app.get("/api/jokes", (req, res) => {
-//   res.send(jokes);
-// });
-
-// app.get("/twitter", (req, res) => {
-//   res.send("I am in");
-// });
-
-// app.get("/login", (req, res) => {
-//   res.send("<h1>Please login</h1>");
-// });
-
-// app.listen(port, () => {
-//   console.log(`App listening on port ${port}`);
-// });
